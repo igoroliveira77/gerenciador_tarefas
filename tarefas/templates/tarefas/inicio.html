@@ -1,0 +1,79 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="{% static 'tarefas/style.css' %}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <h1>TaskManager</h1>
+            <span>Organize suas tarefas</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="boas-vindas">
+            <div>
+                <h2>Meu painel</h2>
+                <p>Organize seu dia e acompanhe suas atividades.</p>
+            </div>
+
+            <a href="{% url 'nova_tarefa' %}" class="botao">+ Nova tarefa</a>
+        </section>
+
+        <section class="resumo">
+
+            <div class="card">
+                <span>Total de tarefas</span>
+                <h3>{{ total_tarefas }}</h3>
+            </div>
+
+            <div class="card pendente">
+                <span>Pendentes</span>
+                <h3>{{ tarefas_pendentes }}</h3>
+            </div>
+
+            <div class="card concluida">
+                <span>Concluídas</span>
+                <h3>{{ tarefas_concluidas }}</h3>
+            </div>
+
+        </section>
+
+        <section class="lista-tarefas">
+
+            <div class="titulo-lista">
+                <h2>Minhas tarefas</h2>
+            </div>
+
+            {% for tarefa in tarefas %}
+                <div class="tarefa">
+                    <div class="tarefa-info">
+                        <h3>{{ tarefa.titulo }}</h3>
+                        <p>{{ tarefa.descricao }}</p>
+                    </div>
+
+                    <span class="status {{ tarefa.status|lower }}">
+                        {{ tarefa.get_status_display }}
+                    </span>
+                </div>
+            {% empty %}
+                <div class="vazio">
+                    <h3>Nenhuma tarefa cadastrada</h3>
+                    <p>Comece adicionando sua primeira tarefa.</p>
+                </div>
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+</html>

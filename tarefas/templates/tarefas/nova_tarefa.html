@@ -1,0 +1,63 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova tarefa | TaskManager</title>
+    <link rel="stylesheet" href="{% static 'tarefas/style.css' %}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <h1>TaskManager</h1>
+            <span>Organize suas tarefas</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="boas-vindas">
+            <div>
+                <h2>Nova tarefa</h2>
+                <p>Preencha as informações para cadastrar uma atividade.</p>
+            </div>
+            <a href="{% url 'inicio' %}" class="botao">Voltar</a>
+        </section>
+
+        <section class="lista-tarefas">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="campo-formulario">
+                    <label for="titulo">Título</label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        name="titulo"
+                        maxlength="100"
+                        placeholder="Ex.: Estudar Python"
+                        required
+                    >
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="descricao">Descrição</label>
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        rows="5"
+                        placeholder="Descreva sua tarefa..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="botao">
+                    Salvar tarefa
+                </button>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>
