@@ -1,5 +1,6 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 
 from .models import Tarefa
 
@@ -31,3 +32,14 @@ def nova_tarefa(request):
             return redirect('inicio')
 
     return render(request, 'tarefas/nova_tarefa.html')
+
+
+@require_POST
+def concluir_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+
+    if tarefa.status == 'PENDENTE':
+        tarefa.status = 'CONCLUIDA'
+        tarefa.save(update_fields=['status'])
+
+    return redirect('inicio')

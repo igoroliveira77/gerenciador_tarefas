@@ -233,3 +233,26 @@ body {
     background-color: #1948b5;
 }
 
+/* Ações da tarefa */
+
+.acoes-tarefa {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.botao-concluir {
+    background-color: #245bdb;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.botao-concluir:hover {
+    background-color: #1948b5;
+}
+

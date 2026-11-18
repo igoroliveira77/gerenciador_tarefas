@@ -60,9 +60,23 @@
                         <p>{{ tarefa.descricao }}</p>
                     </div>
 
-                    <span class="status {{ tarefa.status|lower }}">
-                        {{ tarefa.get_status_display }}
-                    </span>
+                    <div class="acoes-tarefa">
+
+                        <span class="status {{ tarefa.status|lower }}">
+                            {{ tarefa.get_status_display }}
+                        </span>
+
+                        {% if tarefa.status == 'PENDENTE' %}
+                            <form method="POST" action="{% url 'concluir_tarefa' tarefa.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="botao-concluir">
+                                    Concluir
+                                </button>
+                            </form>
+                        {% endif %}
+
+                    </div>
+
                 </div>
             {% empty %}
                 <div class="vazio">

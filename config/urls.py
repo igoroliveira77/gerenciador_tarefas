@@ -12,4 +12,5 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('nova-tarefa/', views.nova_tarefa, name='nova_tarefa'),
     path('admin/', admin.site.urls),
+    path('concluir-tarefa/<int:tarefa_id>/', views.concluir_tarefa, name='concluir_tarefa'),
 ]
