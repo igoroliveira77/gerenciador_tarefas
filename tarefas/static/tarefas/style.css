@@ -256,3 +256,23 @@ body {
     background-color: #1948b5;
 }
 
+.botao-excluir {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.botao-excluir:hover {
+    background-color: #b02a37;
+}
+
+/* Organização dos botões */
+.acoes-tarefa form {
+    margin: 0;
+}
+

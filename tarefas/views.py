@@ -43,3 +43,10 @@ def concluir_tarefa(request, tarefa_id):
         tarefa.save(update_fields=['status'])
 
     return redirect('inicio')
+
+@require_POST
+def excluir_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+    tarefa.delete()
+
+    return redirect('inicio')

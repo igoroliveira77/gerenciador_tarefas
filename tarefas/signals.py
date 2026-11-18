@@ -1,5 +1,4 @@
-
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 from .models import Tarefa, Historico
@@ -33,3 +32,11 @@ def registrar_historico_tarefa(sender, instance, created, **kwargs):
             tarefa=instance,
             descricao=f"Tarefa '{instance.titulo}' foi concluída."
         )
+
+@receiver(post_delete, sender=Tarefa)
+def registrar_exclusao_tarefa(sender, instance, **kwargs):
+
+    Historico.objects.create(
+        tarefa=None,
+        descricao=f"Tarefa '{instance.titulo}' foi excluída."
+    )

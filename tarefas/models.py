@@ -29,10 +29,13 @@ class Tarefa(models.Model):
 class Historico(models.Model):
 
     tarefa = models.ForeignKey(
-        Tarefa,
-        on_delete=models.CASCADE,
-        related_name='historicos'
+    Tarefa,
+    on_delete=models.SET_NULL,
+    related_name='historicos',
+    null=True,
+    blank=True
     )
+    
     descricao = models.CharField(max_length=200)
     data_registro = models.DateTimeField(auto_now_add=True)
 
